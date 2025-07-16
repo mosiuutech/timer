@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>my return home</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ffe0e6);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      background-color: white;
+      padding: 60px 80px;
+      border-radius: 25px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 95%;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #d6336c;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .value {
+      font-size: 64px;
+      font-weight: bold;
+      color: #ff4d6d;
+    }
+
+    .label {
+      font-size: 24px;
+      color: #555;
+    }
+
+  </style>
+</head>
+<body>
+
+  
+
+  <div class="container">
+    <h1>my return home</h1>
+    <div class="countdown" id="countdown">
+      <div class="block">
+        <div class="value" id="days">--</div>
+        <div class="label">days</div>
+      </div>
+      <div class="block">
+        <div class="value" id="hours">--</div>
+        <div class="label">hours</div>
+      </div>
+      <div class="block">
+        <div class="value" id="minutes">--</div>
+        <div class="label">minutes</div>
+      </div>
+      <div class="block">
+        <div class="value" id="seconds">--</div>
+        <div class="label">seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const targetDate = new Date("2025-09-08T00:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        document.getElementById("countdown").innerHTML = "<h2>Już jestem! ❤️</h2>";
+        return;
+      }
+
+      const seconds = Math.floor((distance / 1000) % 60);
+      const minutes = Math.floor((distance / 1000 / 60) % 60);
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
